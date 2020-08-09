@@ -59,5 +59,4 @@ export class AppComponent implements OnInit{
         this.todos = this.todos.filter(t => t.id !== id);
       });
   }
-
 }

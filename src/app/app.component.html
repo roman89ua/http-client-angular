@@ -4,11 +4,11 @@
   <div class="card">
     <div class="form-control">
       <label>
-        <input type="text" placeholder="Название" [(ngModel)]="todoTitle">
+        <input type="text" placeholder="Name" [(ngModel)]="todoTitle">
       </label>
     </div>
-    <button class="btn" (click)="addTodo()">Добавить</button>
-    <button class="btn" (click)="fetchTodos()">Загрузить</button>
+    <button class="btn" (click)="addTodo()">Add</button>
+    <button class="btn" (click)="fetchTodos()">Load</button>
   </div>
 
   <hr>
@@ -19,8 +19,8 @@
         <p>
           <span [class.completed]="todo.completed">{{todo.title}}</span>
           <span>
-        <button class="btn btn-danger" (click)="remove(todo.id)">Удалить</button>
-        <button class="btn" (click)="completed(todo.id)" [disabled]="todo.completed">Завершить</button>
+        <button class="btn btn-danger" (click)="remove(todo.id)">Delete</button>
+        <button class="btn" (click)="completed(todo.id)" [disabled]="todo.completed">Done</button>
         </span>
         </p>
       </div>
