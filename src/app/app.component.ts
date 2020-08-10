@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
   todoTitle = '';
   loading;
   loader = 'Loading...';
-
+  error = '';
 
   constructor(private todosService: TodosService) {
   }
@@ -32,7 +32,9 @@ export class AppComponent implements OnInit{
       .subscribe(response => {
       this.todos.unshift(response);
       this.todoTitle = '';
-    });
+    }, error => {
+        this.error = error.message;
+      });
   }
 
   fetchTodos(): void {
@@ -42,6 +44,8 @@ export class AppComponent implements OnInit{
       .subscribe(response => {
         this.todos = response;
         this.loading = false;
+      }, error => {
+        this.error = error.message;
       });
   }
 
@@ -50,6 +54,8 @@ export class AppComponent implements OnInit{
       .subscribe(response => {
         console.log('response from put request: ', response);
         this.todos.find( t => t.id === response.id).completed = response.completed;
+      }, error => {
+        this.error = error.message;
       });
   }
 
@@ -57,6 +63,8 @@ export class AppComponent implements OnInit{
     this.todosService.remove(id)
       .subscribe(() => {
         this.todos = this.todos.filter(t => t.id !== id);
+      }, error => {
+        this.error = error.message;
       });
   }
 }

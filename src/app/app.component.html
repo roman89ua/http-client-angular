@@ -13,23 +13,26 @@
 
   <hr>
 
-  <div *ngIf="!loading; else spinner">
-    <div class="container" *ngIf="todos.length; else noValues">
-      <div class="card"  *ngFor="let todo of todos">
-        <p>
-          <span [class.completed]="todo.completed">{{todo.title}}</span>
-          <span>
+  <p class="error" *ngIf="error; else todosBlock">{{error}}</p>
+  <ng-template #todosBlock>
+    <div *ngIf="!loading; else spinner">
+      <div class="container" *ngIf="todos.length; else noValues">
+        <div class="card"  *ngFor="let todo of todos">
+          <p>
+            <span [class.completed]="todo.completed">{{todo.title}}</span>
+            <span>
         <button class="btn btn-danger" (click)="remove(todo.id)">Delete</button>
         <button class="btn" (click)="completed(todo.id)" [disabled]="todo.completed">Done</button>
         </span>
-        </p>
+          </p>
+        </div>
       </div>
+      <ng-template #noValues >
+        <p>No tasks in a list</p>
+      </ng-template>
     </div>
-    <ng-template #noValues >
-      <p>No tasks in a list</p>
+    <ng-template #spinner>
+      <p>{{loader}}</p>
     </ng-template>
-  </div>
-  <ng-template #spinner>
-    <p>{{loader}}</p>
   </ng-template>
 </div>
